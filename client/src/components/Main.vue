@@ -25,13 +25,13 @@ export default {
   },
   methods: {
     getTodos() {
-      axios.get("http://localhost:3001/users").then((res) => {
+      axios.get("http://localhost:3001/todo").then((res) => {
       this.todos = res.data
     })
     },
     submitTodo(payload) {
       console.log(payload)
-      axios.post("http://localhost:3001/users", {
+      axios.post("http://localhost:3001/todo", {
         todo: {
           text: payload,
         },
@@ -42,14 +42,14 @@ export default {
     },
     deleteTodo(payload) {
       console.log(payload)
-      axios.delete(`http://localhost:3001/users/${payload}`).then((res) => {
+      axios.delete(`http://localhost:3001/todo/${payload}`).then((res) => {
         console.log(res)
         this.getTodos()
       })
     }
   },
   mounted() {
-    axios.get("http://localhost:3001/users").then((res) => {
+    axios.get("http://localhost:3001/todo").then((res) => {
       this.todos = res.data
     })
   },

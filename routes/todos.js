@@ -1,6 +1,6 @@
-const userRoutes = (app, fs) => {
+const todoRoutes = (app, fs) => {
     // variables
-    const dataPath = './data/users.json';
+    const dataPath = './data/todos.json';
   
     const readFile = (
         callback,
@@ -32,19 +32,19 @@ const userRoutes = (app, fs) => {
         });
       };
     
-      app.get('/users', (req, res) => {
+      app.get('/todo', (req, res) => {
         readFile(data => {
           res.send(data);
         }, true);
       });
 
-      app.post('/users', (req, res) => {
+      app.post('/todo', (req, res) => {
         readFile(data => {
-            const newUserId = Date.now().toString()
+            const newTodoId = Date.now().toString()
             const todo = req.body.todo
-            todo.id = newUserId
+            todo.id = newTodoId
 
-            data[newUserId] = todo
+            data[newTodoId] = todo
 
             writeFile(JSON.stringify(data, null, 2), () => {
                 res.status(200).send('New todo added')
@@ -52,16 +52,16 @@ const userRoutes = (app, fs) => {
         }, true)
       })
 
-      app.delete('/users/:id', (req, res) => {
+      app.delete('/todo/:id', (req, res) => {
         readFile(data => {
-          const userId = req.params.id
-          delete data[userId];
+          const todoId = req.params.id
+          delete data[todoId];
       
           writeFile(JSON.stringify(data, null, 2), () => {
-            res.status(200).send(`users id:${userId} removed`);
+            res.status(200).send(`todo id:${todoId} removed`);
           });
         }, true);
       });
   };
 
-module.exports = userRoutes
+module.exports = todoRoutes
