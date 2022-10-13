@@ -1,6 +1,6 @@
 # JSON Todos
 ### Installation
-In './' run npm install
+In './' run `npm install`
 Then in './client' run `npm install`
 In './' run `npm run start`
 
