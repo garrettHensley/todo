@@ -4,7 +4,9 @@
   "description": "Todo List with a json-server backend",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start:server": "nodemon server.js",
+    "start:client": "npm --prefix ./client run serve",
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
   },
   "keywords": [
     "todo"
@@ -17,6 +19,7 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "concurrently": "^7.4.0",
     "nodemon": "^2.0.20"
   }
 }
